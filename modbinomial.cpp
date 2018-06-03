@@ -38,29 +38,29 @@ constexpr Integer modinv(Integer val){
 // const expression factorial mod MOD
 template<std::size_t N, std::uint_fast64_t MOD>
 struct Fact {
-    std::uint_fast64_t val[N], v2[N];
+    std::uint_fast64_t val[N + 1];
 
-    constexpr Fact() : val(), v2() {
+    constexpr Fact() : val() {
         val[0] = 1;
-        for (std::size_t i = 1; i < N; ++i) val[i] = val[i - 1] * i % MOD;
+        for (std::size_t i = 1; i <= N; ++i) val[i] = val[i - 1] * i % MOD;
     }
 };
 
 // const expression factorial inverse mod MOD
 template<std::size_t N, std::uint_fast64_t MOD, std::uint_fast64_t F>
 struct IFact {
-    std::uint_fast64_t val[N];
+    std::uint_fast64_t val[N + 1];
 
     constexpr IFact() : val() {
-        val[N - 1] = F;
-        for (std::size_t i = N - 1; i; --i) val[i - 1] = val[i] * i % MOD;
+        val[N] = F;
+        for (std::size_t i = N; i; --i) val[i - 1] = val[i] * i % MOD;
     }
 };
 
-constexpr std::uint_fast64_t MOD = 998244353, maxN = 300001;
+constexpr std::uint_fast64_t MOD = 998244353, maxN = 300000;
 
 constexpr auto fact = Fact<maxN, MOD>();
-constexpr auto ifact = IFact<maxN, MOD, modinv<MOD>(fact.val[maxN - 1])>();
+constexpr auto ifact = IFact<maxN, MOD, modinv<MOD>(fact.val[maxN])>();
 
 // const expression binomial mod MOD
 constexpr std::uint_fast64_t binommod(std::uint_fast64_t n, std::uint_fast64_t r){
