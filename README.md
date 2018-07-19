@@ -6,4 +6,6 @@
 
 # 作る予定のもの
 ・モンゴメリ乗算(を実装したModint)
-・Radic Heap(とそれを実装したDijkstra)
+・Radix Heap(とそれを実装したDijkstra)
+
+と思っていたんですけどconstexprライブラリが楽しいのでconstexprライブラリが充実しそうです
